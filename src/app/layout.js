@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import localFont from "next/font/local";
 import "./globals.css";
 import Footer from "../components/footer";
@@ -18,7 +19,7 @@ export const metadata = {
   description: "Aplicação de limpeza de audio",
 };
 
-export default function RootLayout({ children }) {
+function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
@@ -32,3 +33,10 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
+// Adicionando validação de PropTypes para 'children'
+RootLayout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export default RootLayout;
