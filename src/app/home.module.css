@@ -1,0 +1,47 @@
+/* app/home/home.module.css */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f2f5;
+}
+
+.content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.siteName {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center; /* Centraliza os botões */
+  gap: 1rem; /* Espaçamento entre os botões */
+}
+
+.button {
+  background-color: #007bff;
+  color: white;
+  padding: 0.75rem 0; /* Espaço interno vertical */
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 150px; /* Define uma largura fixa para os botões */
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}

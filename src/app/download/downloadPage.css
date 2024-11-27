@@ -1,0 +1,80 @@
+/* Estilo geral */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  h1 {
+    color: #2d3748;
+    text-align: center;
+  }
+  
+  /* Container centralizado */
+  .upload-container,
+  .download-container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+  }
+  
+  /* Input de arquivos */
+  .file-input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #e2e8f0;
+    border-radius: 4px;
+  }
+  
+  /* Botão de upload */
+  .upload-button {
+    background-color: #4a90e2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .upload-button:hover {
+    background-color: #357ab8;
+  }
+  
+  /* Mensagens de status */
+  .message {
+    color: #38a169;
+    margin-top: 10px;
+  }
+  
+  /* Estilo da lista de arquivos */
+  .file-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .file-item {
+    margin: 10px 0;
+  }
+  
+  .file-link {
+    color: #4a90e2;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .file-link:hover {
+    text-decoration: underline;
+    color: #357ab8;
+  }
+  
