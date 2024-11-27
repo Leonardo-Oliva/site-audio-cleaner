@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { storage } from "../../lib/firebase";
-import { ref, uploadBytes } from "firebase/storage";
 import { getAuth } from "firebase/auth";
 import axios from "axios";
 import "./upload.css";

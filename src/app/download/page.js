@@ -49,25 +49,26 @@ export default function DownloadPage() {
       {loading && <p>Carregando arquivos...</p>}
       {error && <p>{error}</p>}
       <ul className="file-list">
-        {files.map((file, index) => (
-          <li key={index} className="file-item">
-            {/* Garantir o download clicando diretamente */}
-            <button
-              onClick={() => {
-                const a = document.createElement("a");
-                a.href = file.url;
-                a.download = file.name; // Define o nome do arquivo a ser baixado
-                document.body.appendChild(a); // Algumas vezes é necessário adicionar o link no DOM antes de clicar
-                a.click(); // Força o download
-                document.body.removeChild(a); // Remove o link do DOM após o clique
-              }}
-              className="file-link"
-            >
-              {file.name} 📥
-            </button>
-          </li>
-        ))}
-      </ul>
+  {files.map((file) => (
+    <li key={file.name} className="file-item">
+      {/* Garantir o download clicando diretamente */}
+      <button
+        onClick={() => {
+          const a = document.createElement("a");
+          a.href = file.url;
+          a.download = file.name; // Define o nome do arquivo a ser baixado
+          a.target = "_blank"; // Abre em nova aba
+          document.body.appendChild(a); // Algumas vezes é necessário adicionar o link no DOM antes de clicar
+          a.click(); // Força o download
+          document.body.removeChild(a); // Remove o link do DOM após o clique
+        }}
+        className="file-link"
+      >
+        {file.name} 📥
+      </button>
+    </li>
+  ))}
+</ul>
     </div>
   );
 }
