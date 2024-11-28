@@ -1,4 +1,3 @@
-// app/login/page.js
 "use client";
 
 import { useState, useEffect } from "react";
@@ -13,18 +12,20 @@ export default function LoginPage() {
   const [error, setError] = useState(null);
   const router = useRouter();
 
-  // useEffect para verificar se o usuário já está logado
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        router.push("/dashboard");
-      }
-    });
-    return () => unsubscribe(); // Limpa o listener ao desmontar o componente
+    if (typeof window !== "undefined") {
+      const unsubscribe = auth.onAuthStateChanged((user) => {
+        if (user) {
+          router.push("/dashboard");
+        }
+      });
+      return () => unsubscribe(); // Limpa o listener ao desmontar o componente
+    }
   }, [router]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
     try {
       await signInWithEmailAndPassword(auth, email, password);
       router.push("/dashboard");
@@ -37,7 +38,7 @@ export default function LoginPage() {
     <div className={styles.container}>
       <div className={styles.loginForm}>
         <h1>Login</h1>
-        {error && <p>{error}</p>}
+        {error && <p className={styles.error}>{error}</p>}
         <form onSubmit={handleLogin}>
           <input
             type="email"
