@@ -1,7 +1,7 @@
 // app/register/page.js
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../lib/firebase";
 import { useRouter } from "next/navigation";
@@ -13,7 +13,12 @@ export default function RegisterPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const [isClient, setIsClient] = useState(false); // Estado para verificar se estamos no cliente
   const router = useRouter();
+
+  useEffect(() => {
+    setIsClient(true); // Marca que o componente está no lado do cliente
+  }, []);
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -30,10 +35,12 @@ export default function RegisterPage() {
     }
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      setSuccess(true);
-      setError(null);
-      router.push("/login"); // Redireciona para a página de login
+      if (isClient) { // Verifica se estamos no cliente
+        await createUserWithEmailAndPassword(auth, email, password);
+        setSuccess(true);
+        setError(null);
+        router.push("/login"); // Redireciona para a página de login
+      }
     } catch (err) {
       if (err.code === "auth/email-already-in-use") {
         setError("Email já está em uso.");
@@ -44,6 +51,9 @@ export default function RegisterPage() {
       }
     }
   };
+
+  // Só renderiza o formulário se for no cliente
+  if (!isClient) return null;
 
   return (
     <div className={styles.container}>
