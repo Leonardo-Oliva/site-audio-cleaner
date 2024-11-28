@@ -11,7 +11,7 @@ export default function Dashboard() {
   const router = useRouter();
 
   useEffect(() => {
-    // Garante que o código do Firebase só será executado no lado do cliente
+    // Executa a lógica somente no cliente
     if (typeof window !== "undefined") {
       const unsubscribe = auth.onAuthStateChanged((user) => {
         if (user) {
@@ -19,7 +19,7 @@ export default function Dashboard() {
         } else {
           router.push("/login");
         }
-        setLoading(false); // Para exibir o conteúdo quando a verificação estiver concluída
+        setLoading(false);
       });
 
       return () => unsubscribe();
@@ -38,7 +38,7 @@ export default function Dashboard() {
   }
 
   if (!user) {
-    return null; // O redirecionamento será tratado pelo useEffect
+    return null; // Redirecionamento via useEffect
   }
 
   return (
