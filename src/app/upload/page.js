@@ -117,8 +117,6 @@ export default function UploadPage() {
             case "apply_reverb":
               title = "Função: Simula o som refletindo em diferentes superfícies, adicionando um 'eco' natural e criando a sensação de ambiente ou espaço (como uma sala ou catedral).";
               break;
-            default:
-              title = "";
           }
 
           return (
