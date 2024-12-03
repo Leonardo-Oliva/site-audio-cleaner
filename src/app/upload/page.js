@@ -9,9 +9,25 @@ export default function UploadPage() {
   const [file, setFile] = useState(null);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false); // Estado para controle do carregamento
+  const [filters, setFilters] = useState({
+    apply_noise_gate: false,
+    apply_compressor: false,
+    apply_low_shelf_filter: false,
+    apply_gain: false,
+    apply_reverb: false,
+    apply_chorus: false,
+  });
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
+  };
+
+  const handleFilterChange = (e) => {
+    const { name, checked } = e.target;
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      [name]: checked,
+    }));
   };
 
   const handleUpload = async () => {
@@ -19,9 +35,16 @@ export default function UploadPage() {
       setMessage("Por favor, selecione um arquivo para upload.");
       return;
     }
-  
+
     if (!file.name.endsWith(".wav")) {
       setMessage("Somente arquivos .wav são permitidos.");
+      return;
+    }
+
+    // Verificando se pelo menos um filtro foi selecionado
+    const isAnyFilterSelected = Object.values(filters).includes(true);
+    if (!isAnyFilterSelected) {
+      setMessage("Por favor, marque pelo menos um filtro.");
       return;
     }
 
@@ -39,6 +62,11 @@ export default function UploadPage() {
       const formData = new FormData();
       formData.append("file", file);
       formData.append("user_id", user.uid);
+
+      // Adicionando os filtros ao FormData
+      Object.keys(filters).forEach((filter) => {
+        formData.append(filter, filters[filter]);
+      });
 
       const apiUrl = `https://audio-cleaner-b6b4b5ad8f62.herokuapp.com/process_audio/`;
 
@@ -65,6 +93,49 @@ export default function UploadPage() {
     <div className="container">
       <h1 className="title">Upload de Arquivos</h1>
       <input type="file" onChange={handleFileChange} className="input-file" />
+      
+      {/* Checkboxes para os filtros */}
+      <div className="checkbox-group">
+        {Object.keys(filters).map((filter) => {
+          let title = "";
+          switch (filter) {
+            case "apply_noise_gate":
+              title = "Função: Reduz ou elimina o som abaixo de um certo nível (threshold), conhecido como 'ruído de fundo'.";
+              break;
+            case "apply_compressor":
+              title = "Função: Reduz a diferença entre as partes mais altas e mais baixas do áudio, tornando o som mais uniforme.";
+              break;
+            case "apply_low_shelf_filter":
+              title = "Função: Amplia as frequências baixas (graves) abaixo de um certo ponto.";
+              break;
+            case "apply_gain":
+              title = "Função: Amplia o volume geral do áudio.";
+              break;
+            case "apply_chorus":
+              title = "Função: Duplica o som original com pequenas variações de tempo e afinação, criando a sensação de múltiplas fontes tocando juntas, como um coro ou várias guitarras.";
+              break;
+            case "apply_reverb":
+              title = "Função: Simula o som refletindo em diferentes superfícies, adicionando um 'eco' natural e criando a sensação de ambiente ou espaço (como uma sala ou catedral).";
+              break;
+            default:
+              title = "";
+          }
+
+          return (
+            <label key={filter} className="checkbox-label" title={title}>
+              <input
+                type="checkbox"
+                name={filter}
+                checked={filters[filter]}
+                onChange={handleFilterChange}
+              />
+              {filter.replace("apply_", "").replace("_", " ").toUpperCase()}
+            </label>
+          );
+        })}
+      </div>
+      <h1 className="explicacao">Passe o mouse por cima das opções para mais detalhes sobre a função dos efeitos.</h1>
+
       <button onClick={handleUpload} className="button" disabled={loading}>
         {loading ? "Processando..." : "Fazer Upload"}
       </button>

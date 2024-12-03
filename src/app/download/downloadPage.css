@@ -23,7 +23,7 @@ body {
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 400px;
+    width: 900px;
     text-align: center;
   }
   
@@ -61,16 +61,24 @@ body {
   .file-list {
     list-style: none;
     padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Espaço entre os arquivos */
+    align-items: center;
+    justify-content: center; /* Centraliza os itens horizontalmente */
   }
   
   .file-item {
     margin: 10px 0;
+    display: flex;
+    align-items: center;
   }
   
   .file-link {
     color: #4a90e2;
     text-decoration: none;
     font-weight: bold;
+    margin-left: 5px; /* Margem entre o texto "Alterado: / Original:" e o botão */
   }
   
   .file-link:hover {
@@ -78,3 +86,50 @@ body {
     color: #357ab8;
   }
   
+  .nome-arquivo {
+margin-top: 20px;
+  }
+
+  .effects {
+    font-style: italic;
+    color: #666; /* Cor mais suave para os efeitos */
+    margin-left: 10px; /* Espaço entre o nome da pasta e os efeitos */
+  }
+
+  .folder-separator {
+    margin: 20px 0;
+    border: 0;
+    border-top: 2px solid #ccc; /* Linha de separação */
+    width: 100%;
+  }
+
+  .title-separator {
+    margin: 20px 0;
+    border: 0;
+    border-top: 2px solid #ccc; /* Linha de separação */
+    width: 100%;
+  }
+
+  .titulo{
+    color: #005bb5;
+    font-size: 2rem;
+  }
+
+  /* Estilo para o botão de apagar a pasta */
+.delete-folder-button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-folder-button:hover {
+  background-color: #d32f2f;
+}
+
+.data{
+  margin-top: 10px;
+}

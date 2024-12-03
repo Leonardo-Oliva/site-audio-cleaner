@@ -68,3 +68,41 @@ html, body {
   width: 50px;
   height: 50px;
 }
+
+/* Container das checkboxes */
+.checkbox-group {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Espaçamento entre as checkboxes */
+}
+
+/* Estilo para cada label */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Estilo para a checkbox */
+.checkbox-label input {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  accent-color: #4CAF50; /* Cor de destaque para a checkbox */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Efeito de hover na checkbox */
+.checkbox-label:hover input {
+  background-color: #e0e0e0;
+  transform: scale(1.1); /* Aumenta um pouco o tamanho no hover */
+}
+
+.explicacao{
+  margin-top: 20px;
+  color: black;
+  text-align: center;
+}
