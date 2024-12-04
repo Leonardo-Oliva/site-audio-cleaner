@@ -1,9 +1,20 @@
 /* components/Footer.module.css */
 .footer {
-    background-color: #f0f2f5;
+    background-color: #9ec5ff;
     padding: 1rem;
     text-align: center;
     border-top: 1px solid #ddd;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  .footerArredondado {
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
   }
   
   .footer p {

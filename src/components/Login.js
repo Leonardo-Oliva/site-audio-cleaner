@@ -5,6 +5,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../lib/firebase";
 import { useRouter } from "next/navigation";
 import styles from "../app/login/login.module.css";
+import Link from "next/link";
 
 export default function LoginPageContent() {
   const [email, setEmail] = useState("");
@@ -52,7 +53,10 @@ export default function LoginPageContent() {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Senha"
           />
-          <button type="submit">Entrar</button>
+          <button type="submit">Entrar</button> 
+          <Link href="/register">
+            <button className={styles.button}>Registrar</button>
+          </Link>
         </form>
       </div>
     </div>

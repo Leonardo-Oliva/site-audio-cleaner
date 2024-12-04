@@ -148,6 +148,9 @@ export default function DownloadPage() {
           })}
         </div>
       )}
+      <button onClick={() => window.location.href = "/dashboard"} className="button" disabled={loading}>
+        Dashboard
+      </button>
     </div>
   );
 }
