@@ -1,10 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { auth } from "../lib/firebase";
 import { useRouter } from "next/navigation";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../lib/firebase";  // Certifique-se de importar o db corretamente
+import { db , auth} from "../lib/firebase";  // Certifique-se de importar o db corretamente
 import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import styles from "../app/dashboard/dashboard.module.css";
