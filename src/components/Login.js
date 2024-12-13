@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../lib/firebase";
 import { useRouter } from "next/navigation";
+import { logEvent } from "@vercel/analytics"; // Importa logEvent da Vercel Analytics
 import styles from "../app/login/login.module.css";
 import Link from "next/link";
 
@@ -29,9 +30,11 @@ export default function LoginPageContent() {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      logEvent("login_success", { email }); // Registra o evento de login bem-sucedido
       router.push("/dashboard");
     } catch (err) {
       setError("Falha no login. Verifique suas credenciais.");
+      logEvent("login_failure", { error: err.message }); // Registra o evento de falha no login
     }
   };
 
@@ -53,7 +56,7 @@ export default function LoginPageContent() {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Senha"
           />
-          <button type="submit">Entrar</button> 
+          <button type="submit">Entrar</button>
           <Link href="/register">
             <button className={styles.button}>Registrar</button>
           </Link>
